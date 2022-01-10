@@ -1,0 +1,15 @@
+1. What additional architectural change can be made to reduce the internet-facing attack surface of the web application instance.
+
+- We can disable SSH access to the web application instance. We can also set web application firewalls between clients and the web app to inspect application HTTP traffic and see if there are indications of exploitation attempts based on traffic patterns. Then, WAF can setup to block or log suspicious activities. 
+
+2. Assuming the IAM permissions for the S3 bucket are still insecure, would creating VPC private endpoints for S3 prevent the unauthorized access to the secrets bucket.
+
+- Assuming IAM permissions are still not secure, creating VPC private endpoints for S3 will not prevent unauthorized access to the secrets bucket. 
+
+3. Will applying default encryption setting to the s3 buckets encrypt the data that already exists?
+
+- No, enabling default encryption doesn't change the encryption of objects that are already in the bucket. It only applies to future uploads and the existing objects would need to be encrypted and re-uploaded.
+
+4. The changes you made above were done through the console or CLI; describe the outcome if the original cloud formation templates are applied to this environment?
+
+- The CLI would reset to the settings from the original templates in CloudFormation. That being said, the remediation steps would be reverted and all the original security risk go reset and you should make any require fixes by updating the CloudFormation template. 

@@ -1,0 +1,19 @@
+# Research and analyze which of the vulnerabilities appear to be related to the code that was deployed for the environment in this project.
+
+
+AWS Config: 
+
+- "securityhub-restricted-ssh-871e322a" is noncompliant for the Applicaiton Server and Attack Instance Security Groups. 
+It checks to see if the incoming SSH traffic for the security is accessible. To control the vulnerability, we would need to not allow any SSH traffic to the Application Server security group and access the instance using the Session Manager through AWS System Manager.
+
+- "securityhub-encrypted-volumes-858bdc38" is noncompliant for the Application Server and the Attack Instance. 
+It checks to see if the EBS volumes in the attached state are encrypted. To control the vulnerability, we can enable encryption for volumes. 
+
+- "securityhub-s3-bucket-server-side-encryption-enabled-4359688f" is noncompliant for both free and secret S3 buckets. It checks to see if the Amazon S3 bucket has Amazon S3 default encryption enabled or the S3 bucket policy explicity denies put-object request without server side encryption. To control the vulnerability, we can enable encryption for S3 buckets. 
+
+AWS Security Hub:
+
+- "Critical" severity are related to the use of the root account. To control the vulnerabilities, we should avoid to use the root account after initial account creation. It's highly recommended to enable Multi-factor authentication for the account. 
+
+- "High" severity highlight the vulnerabilities in the security groups configurations. Current configuration does not follow the least privilege access principle and too permisive to allow traffic from 0.0.0.0/0 to port 22 on the Application which means that
+malicious users can directly attack the Application server instance from the internet. To reduce the control of this vulnerability, we can configure the Inbound Rules for WebAppSG to restirct access through port 22 and only allow incoming traffic from the Application Load Balancer. 

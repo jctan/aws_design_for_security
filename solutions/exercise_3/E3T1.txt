@@ -1,0 +1,9 @@
+# What findings were detected related to the brute force attack?
+
+- An EC2 instance was attached via SSH brute force. An attacker is attempting to gain unauthorized access by guessing SSH password. 
+
+
+# Research the AWS Guard Duty documentation page and explain how GuardDuty may have detected this attack - i.e. what was its source of information?
+
+- The AWS Guard Duty monitor CloudTrial, DNS, and VPC flow logs to detect suspicious activities. 
+The AWS GuardDuty would analyze the AWS VPC Flow Logs to detect the brute force attacks.

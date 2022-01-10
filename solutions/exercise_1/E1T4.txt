@@ -1,0 +1,12 @@
+# Poor practice 1 - Web Service Instance as Public Subnet
+The web service instance is in the public subnet, has port 5000 open to the internet and there's no HTTPS port 443 open. 
+Instead, the web service instance should be in the private subnet to not letting it expose to the internet and be able to reach only from the application load balancer. It should use port 443 and not port 80. The Security group for application servers (WebAppSG) has a very critical configuration issue. It has all open ports protocol as inbound rules; DestinationCidrBlock as 0.0.0.0/0 (Internet) for DefaultPrivateRoute1 and DefaultPrivateRoute2 tables. This means that if there are resources within the private subnet that gets under control by milicious activities, it could communicate with any of the endpoint on the internet. 
+
+
+
+# Poor practice 2 - Public access to S3 Bucket "free recipes" and "secret recipes"
+
+It's important to make sure S3 buckets are configure securely since cloud data breaches for the past few years were private data
+being leaked from S3 buckets. A recommend action is to enable S3 public access being block for all S3 buckets. It shiould also make
+it reachable only from the Web Application instance. Therefore, using VPC endpoints would block requestst that don't originate
+from the selected VPC network. It's a good practice to enable at least the server-side encryption. Furthermore, creating S3 buckets politicies would help with restrictions and control access. Also, using object versioning would make it difficult for infiltration to corrupt or delete data. 
