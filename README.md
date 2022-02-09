@@ -1,6 +1,6 @@
 # Cloud Security - Secure the Recipe Vault Web Application
  
-In this project, you will:
+In this project:
  
 * Deploy and assess a simple web application environment’s security posture
 * Test the security of the environment by simulating attack scenarios and exploiting cloud configuration vulnerabilities
@@ -11,7 +11,7 @@ In this project, you will:
 ## Dependencies and Prerequisites
  
 ### Access to AWS account  
-Students will need to use their personal AWS accounts.  Udacity will provide a $100 credit for any usage costs. If project instructions are followed we do not anticipate usage costs to exceed this amount.
+You will need to use their personal AWS accounts.  Udacity will provide a $100 credit for any usage costs. If project instructions are followed we do not anticipate usage costs to exceed this amount.
  
 ### Installation of the AWS CLI and Local Setup of AWS API keys
 Instructions and examples in this project will make use of the AWS CLI in order to automate and reduce time and complexity.
